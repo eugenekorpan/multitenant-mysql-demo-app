@@ -13,5 +13,3 @@ end
 gem 'jquery-rails'
 gem 'pry'
 gem 'rb-readline'
-
-gem 'multitenant-mysql', path: '/home/eugene/Work/multitenant-mysql'
