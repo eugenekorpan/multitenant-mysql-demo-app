@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tenant</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <div style='float: right;'>
+    <%= link_to "Books", books_path %> | <%= link_to "All Users", users_path %> | <%= current_user.full_name %> | <%= current_user.tenant.name %>
+  </div>
+
+<%= yield %>
+
+</body>
+</html>

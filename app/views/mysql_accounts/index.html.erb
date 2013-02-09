@@ -1,0 +1,23 @@
+<h1>Listing mysql_accounts</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @mysql_accounts.each do |mysql_account| %>
+  <tr>
+    <td><%= mysql_account.name %></td>
+    <td><%= link_to 'Show', mysql_account %></td>
+    <td><%= link_to 'Edit', edit_mysql_account_path(mysql_account) %></td>
+    <td><%= link_to 'Destroy', mysql_account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Mysql account', new_mysql_account_path %>

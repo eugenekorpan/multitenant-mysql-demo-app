@@ -1,0 +1,2 @@
+module MysqlAccountsHelper
+end
