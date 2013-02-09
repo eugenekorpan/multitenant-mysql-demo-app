@@ -9,7 +9,8 @@
 <body>
 
   <div style='float: right;'>
-    <%= link_to "Books", books_path %> | <%= link_to "All Users", users_path %> | <%= current_user.full_name %> | <%= current_user.tenant.name %>
+    <%= link_to "Tenants", mysql_accounts_path %> | <%= link_to "Books", books_path %> | <%= link_to "Users", users_path %> 
+    <br/> <%= current_user.full_name %> | <%= current_user.tenant.name %>
   </div>
 
 <%= yield %>
