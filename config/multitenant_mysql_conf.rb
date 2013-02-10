@@ -1,1 +1,1 @@
-Multitenant::Mysql.models = [:book]
+Multitenant::Mysql.models = ['Book']
