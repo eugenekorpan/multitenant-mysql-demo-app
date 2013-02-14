@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   helper_method :tenant_name
 
   def tenant_name
-    current_user.tenant.name
+    current_user.tenant.name rescue '-'
   end
 
 end
