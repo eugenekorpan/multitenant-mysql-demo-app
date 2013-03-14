@@ -1,6 +1,9 @@
 class BooksController < ApplicationController
   # GET /books
   # GET /books.json
+
+  before_or_404 :find_book, only: [:show, :edit]
+
   def index
     @books = Book.all
 
@@ -13,7 +16,6 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
-    @book = Book.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,7 +36,6 @@ class BooksController < ApplicationController
 
   # GET /books/1/edit
   def edit
-    @book = Book.find(params[:id])
   end
 
   # POST /books
@@ -79,6 +80,12 @@ class BooksController < ApplicationController
       format.html { redirect_to books_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def find_book
+    @book = Book.find(params[:id])
   end
 
 end
