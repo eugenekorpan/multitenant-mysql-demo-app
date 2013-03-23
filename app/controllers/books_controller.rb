@@ -1,6 +1,19 @@
+
+class Catcha < ActiveFilter::Base
+  def perform
+    begin
+      yield
+    rescue
+      flash[:notice] = 'bad url'
+      redirect_to '/'
+    end
+  end
+end
+
 class BooksController < ApplicationController
-  # GET /books
-  # GET /books.json
+  wrapped_before_filter :find_book, with: Catcha, only: [:show, :edit, :update, :destroy]
+
+
   def index
     @books = Book.all
 
@@ -13,7 +26,6 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
-    @book = Book.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,7 +46,6 @@ class BooksController < ApplicationController
 
   # GET /books/1/edit
   def edit
-    @book = Book.find(params[:id])
   end
 
   # POST /books
@@ -56,8 +67,6 @@ class BooksController < ApplicationController
   # PUT /books/1
   # PUT /books/1.json
   def update
-    @book = Book.find(params[:id])
-
     respond_to do |format|
       if @book.update_attributes(params[:book])
         format.html { redirect_to @book, notice: 'Book was successfully updated.' }
@@ -72,13 +81,18 @@ class BooksController < ApplicationController
   # DELETE /books/1
   # DELETE /books/1.json
   def destroy
-    @book = Book.find(params[:id])
     @book.destroy
 
     respond_to do |format|
       format.html { redirect_to books_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def find_book
+    @book = Book.find(params[:id])
   end
 
 end
