@@ -13,7 +13,6 @@ end
 class BooksController < ApplicationController
   wrapped_before_filter :find_book, with: Catcha, only: [:show, :edit, :update, :destroy]
 
-
   def index
     @books = Book.all
 
